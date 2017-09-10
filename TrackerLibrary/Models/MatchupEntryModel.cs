@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TrackerLibrary
+﻿namespace TrackerLibrary.Models
 {
     public class MatchupEntryModel
     {
