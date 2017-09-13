@@ -78,7 +78,7 @@ namespace TrackerUI
 
         private bool ValidateForm()
         {
-            if(firstNameValue.Text.Length == 0)
+            if (firstNameValue.Text.Length == 0)
             {
                 return false;
             }
@@ -110,7 +110,7 @@ namespace TrackerUI
                 availableTeamMembers.Remove(p);
                 selectedTeamMembers.Add(p);
 
-                WireUpLists(); 
+                WireUpLists();
             }
         }
 
@@ -123,8 +123,21 @@ namespace TrackerUI
                 selectedTeamMembers.Remove(p);
                 availableTeamMembers.Add(p);
 
-                WireUpLists(); 
+                WireUpLists();
             }
+        }
+
+        private void createTeamButton_Click(object sender, EventArgs e)
+        {
+            TeamModel t = new TeamModel()
+            {
+                TeamName = teamNameValue.Text,
+                TeamMembers = selectedTeamMembers
+            };
+            
+            t = GlobalConfig.Connection.CreateTeam(t);
+
+            // TODO - If we aren't closing this form after creation, reset the form
         }
     }
 }
