@@ -86,12 +86,31 @@ namespace TrackerLibrary.DataAccess
             }
         }
 
-        public List<PersonModel> GetPerson_ALL()
+        public List<PersonModel> GetPerson_All()
         {
             List<PersonModel> output;
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db))) 
             {
                 output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+
+            return output;
+        }
+
+        public List<TeamModel> GetTeam_All()
+        {
+            List<TeamModel> output;
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<TeamModel>("dbo.spTeam_GetAll").ToList();
+
+                foreach(var team in output)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@TeamId", team.Id);
+
+                    team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                }
             }
 
             return output;
