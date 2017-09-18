@@ -24,7 +24,7 @@ namespace TrackerUI
 
             WireUpLists();
         }
- 
+
         private void WireUpLists()
         {
             selectTeamDropDown.DataSource = null;
@@ -44,7 +44,7 @@ namespace TrackerUI
         {
             TeamModel t = (TeamModel)selectTeamDropDown.SelectedItem;
 
-            if(t != null)
+            if (t != null)
             {
                 availableTeams.Remove(t);
                 selectedTeams.Add(t);
@@ -84,7 +84,7 @@ namespace TrackerUI
         {
             TeamModel t = (TeamModel)tournamentTeamsListBox.SelectedItem;
 
-            if(t != null)
+            if (t != null)
             {
                 selectedTeams.Remove(t);
                 availableTeams.Add(t);
@@ -97,12 +97,42 @@ namespace TrackerUI
         {
             PrizeModel p = (PrizeModel)prizesListBox.SelectedItem;
 
-            if(p != null)
+            if (p != null)
             {
                 selectedPrizes.Remove(p);
 
                 WireUpLists();
             }
+        }
+
+        private void createTournamentButton_Click(object sender, EventArgs e)
+        {
+            // Validate data
+            var feeAcceptable = decimal.TryParse(EntryFeeValue.Text, out decimal entryFree);
+
+            if (!feeAcceptable)
+            {
+                MessageBox.Show("You need to enter a valid Entry Fee.",
+                    "Invalid Fee",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // Create our tournament model
+            TournamentModel tm = new TournamentModel();
+            tm.TournamentName = tournamentNameValue.Text;
+            tm.EntryFee = entryFree;
+
+            tm.Prizes = selectedPrizes;
+            tm.EnteredTeams = selectedTeams;
+
+            // Wire our matchups
+
+            // Create Tournament entry
+            // Create all of the prizes entries
+            // Create all of team entries
+            GlobalConfig.Connection.CreateTournament(tm);
         }
     }
 }

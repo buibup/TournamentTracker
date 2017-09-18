@@ -31,7 +31,7 @@
             this.headerLabel = new System.Windows.Forms.Label();
             this.tournamentNameValue = new System.Windows.Forms.TextBox();
             this.tournamentNameLabel = new System.Windows.Forms.Label();
-            this.EntryFeeText = new System.Windows.Forms.TextBox();
+            this.EntryFeeValue = new System.Windows.Forms.TextBox();
             this.entryFreeLabel = new System.Windows.Forms.Label();
             this.selectTeamDropDown = new System.Windows.Forms.ComboBox();
             this.selectTeamLabel = new System.Windows.Forms.Label();
@@ -76,13 +76,13 @@
             this.tournamentNameLabel.TabIndex = 6;
             this.tournamentNameLabel.Text = "Tournament Name";
             // 
-            // EntryFeeText
+            // EntryFeeValue
             // 
-            this.EntryFeeText.Location = new System.Drawing.Point(149, 178);
-            this.EntryFeeText.Name = "EntryFeeText";
-            this.EntryFeeText.Size = new System.Drawing.Size(100, 35);
-            this.EntryFeeText.TabIndex = 9;
-            this.EntryFeeText.Text = "0";
+            this.EntryFeeValue.Location = new System.Drawing.Point(149, 178);
+            this.EntryFeeValue.Name = "EntryFeeValue";
+            this.EntryFeeValue.Size = new System.Drawing.Size(100, 35);
+            this.EntryFeeValue.TabIndex = 9;
+            this.EntryFeeValue.Text = "0";
             // 
             // entryFreeLabel
             // 
@@ -245,6 +245,7 @@
             this.createTournamentButton.TabIndex = 13;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // CreateTournamentForm
             // 
@@ -263,7 +264,7 @@
             this.Controls.Add(this.createNewTeamLink);
             this.Controls.Add(this.selectTeamDropDown);
             this.Controls.Add(this.selectTeamLabel);
-            this.Controls.Add(this.EntryFeeText);
+            this.Controls.Add(this.EntryFeeValue);
             this.Controls.Add(this.entryFreeLabel);
             this.Controls.Add(this.tournamentNameValue);
             this.Controls.Add(this.tournamentPlayersLabel);
@@ -284,7 +285,7 @@
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.TextBox tournamentNameValue;
         private System.Windows.Forms.Label tournamentNameLabel;
-        private System.Windows.Forms.TextBox EntryFeeText;
+        private System.Windows.Forms.TextBox EntryFeeValue;
         private System.Windows.Forms.Label entryFreeLabel;
         private System.Windows.Forms.ComboBox selectTeamDropDown;
         private System.Windows.Forms.Label selectTeamLabel;
